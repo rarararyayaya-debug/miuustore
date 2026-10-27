@@ -1,7 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { useCatalog } from '../lib/useCatalog'
-import { rupiah } from '../lib/format'
-import BackgroundFX from '../components/BackgroundFX'
+import { Search, Sparkles, Heart, Flower2, ArrowLeft, ArrowRight, RotateCw, Star } from 'lucide-react'import BackgroundFX from '../components/BackgroundFX'
 import LoadingScreen from '../components/LoadingScreen'
 import Typewriter from '../components/Typewriter'
 import Logo from '../components/pixel/Logo'
