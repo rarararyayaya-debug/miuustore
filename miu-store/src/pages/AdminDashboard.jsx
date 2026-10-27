@@ -15,7 +15,7 @@ const Field = ({ label, children }) => <label className="flex flex-col gap-1 tex
 const danger = { background: '#4B3768' }
 
 function ProductForm({ product, categories, toast, reload, onClose }) {
-  cconst TABS = [
+  const TABS = [
   { id: 'home', label: 'Homepage', path: '' },
   { id: 'pricelist', label: 'Pricelist', path: 'pricelist' },
   { id: 'about', label: 'About Store', path: 'about' },
