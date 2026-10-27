@@ -1,11 +1,13 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { Search, Sparkles, Heart, Flower2, ArrowLeft, ArrowRight, RotateCw, Star } from 'lucide-react'import BackgroundFX from '../components/BackgroundFX'
+import { Search, Sparkles, Heart, Flower2, ArrowLeft, ArrowRight, RotateCw, Star } from 'lucide-react'
+import { useCatalog } from '../lib/useCatalog'
+import { rupiah } from '../lib/format'
+import BackgroundFX from '../components/BackgroundFX'
 import LoadingScreen from '../components/LoadingScreen'
 import Typewriter from '../components/Typewriter'
 import Logo from '../components/pixel/Logo'
 import PixelCat from '../components/pixel/PixelCat'
 import PixelBunny from '../components/pixel/PixelBunny'
-
 // Tab yang terbuka pertama kali (dan setelah tombol refresh).
 // Ganti ke 'pricelist' kalau pembeli ingin langsung melihat katalog.
 const INITIAL_TAB = 'home'
