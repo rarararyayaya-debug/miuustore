@@ -201,7 +201,7 @@ function ProductCard({ product: p, catName, i }) {
 
         {general && (
           <div className="mt-auto rounded-2xl border-2 border-dashed border-[#eac8df] bg-[#fff7fc] p-3">
-            <p className="mb-1 text-xs font-extrabold text-[#aa6a98]">✎ ♡ Daftar Harga & Info Paket</p>
+            <p className="mb-1 text-xs font-extrabold text-[#aa6a98]">✎ ♡ Daftar Harga & Info Paket </p>
             <p className="whitespace-pre-line break-words text-xs leading-5 text-[#706984]">{general}</p>
           </div>
         )}
