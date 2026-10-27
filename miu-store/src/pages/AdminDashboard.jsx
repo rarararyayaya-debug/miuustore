@@ -16,7 +16,7 @@ const danger = { background: '#4B3768' }
 
 function ProductForm({ product, categories, toast, reload, onClose }) {
   const [f, setF] = useState(product
-    ? { ...product, price: String(product.price), variantsText: variantsToText(product.variants), category_id: product.category_id || '' }
+    ? { ...product, price: String(product.price),variantsText: [variantsToText(product.variants), product.description].filter(Boolean).join('\n\n')
     : { name: '', price: '', category_id: '', description: '', variantsText: '', in_stock: true, is_published: true, image_url: null })
   const [file, setFile] = useState(null)
   const [busy, setBusy] = useState(false)
@@ -28,10 +28,19 @@ function ProductForm({ product, categories, toast, reload, onClose }) {
     setBusy(true)
     try {
       const image_url = file ? await uploadImage(file) : f.image_url
-      const variants = parseVariants(f.variantsText)
+      const variants = []
+const freePriceText = f.variantsText.trim()
       const price = parseInt(String(f.price).replace(/\D/g, ''), 10) || (variants.length ? Math.min(...variants.map((v) => v.price)) : 0)
-      const row = { name: f.name.trim(), price, category_id: f.category_id || null, description: f.description, variants, image_url, in_stock: f.in_stock, is_published: f.is_published }
-      const { error } = product
+const row = {
+  name: f.name.trim(),
+  price,
+  category_id: f.category_id || null,
+  description: freePriceText,
+  variants,
+  image_url,
+  in_stock: f.in_stock,
+  is_published: f.is_published
+}      const { error } = product
         ? await supabase.from('products').update(row).eq('id', product.id)
         : await supabase.from('products').insert(row)
       if (error) throw error
@@ -48,16 +57,21 @@ function ProductForm({ product, categories, toast, reload, onClose }) {
       </div>
       <Field label="Nama produk"><input className={inp} required value={f.name} onChange={(e) => set('name', e.target.value)} /></Field>
       <Field label="Harga (Rp) — kosongkan jika pakai varian"><input className={inp} inputMode="numeric" value={f.price} onChange={(e) => set('price', e.target.value)} /></Field>
-      <Field label="Varian harga (opsional, satu per baris: 1 hari = 4000)">
-        <textarea className={inp} rows={4} value={f.variantsText} onChange={(e) => set('variantsText', e.target.value)} placeholder={'1 hari = 4000\n1 bulan = 41000'} />
-      </Field>
+     <Field label="Daftar Harga Bebas ♡">
+  <textarea
+    className={inp}
+    rows={10}
+    value={f.variantsText}
+    onChange={(e) => set('variantsText', e.target.value)}
+    placeholder={'♡ SHARING 1P1U\n1 hari — 4k\n7 hari — 15k\n\n♡ PRIVATE\n1 bulan — 150k'}
+  />
+</Field>
       <Field label="Kategori">
         <select className={inp} value={f.category_id} onChange={(e) => set('category_id', e.target.value)}>
           <option value="">— tanpa kategori —</option>
           {categories.map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}
         </select>
       </Field>
-      <Field label="Deskripsi"><textarea className={inp} rows={3} value={f.description} onChange={(e) => set('description', e.target.value)} /></Field>
       <Field label="Foto produk (dari galeri HP)">
         <input type="file" accept="image/*" onChange={(e) => setFile(e.target.files?.[0] || null)} />
       </Field>
