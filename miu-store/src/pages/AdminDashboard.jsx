@@ -15,13 +15,15 @@ const Field = ({ label, children }) => <label className="flex flex-col gap-1 tex
 const danger = { background: '#4B3768' }
 
 function ProductForm({ product, categories, toast, reload, onClose }) {
-  const [f, setF] = useState(product
-    ? { ...product, price: String(product.price),variantsText: [variantsToText(product.variants), product.description].filter(Boolean).join('\n\n')
-    : { name: '', price: '', category_id: '', description: '', variantsText: '', in_stock: true, is_published: true, image_url: null })
-  const [file, setFile] = useState(null)
-  const [busy, setBusy] = useState(false)
-  const set = (k, v) => setF((x) => ({ ...x, [k]: v }))
+  cconst TABS = [
+  { id: 'home', label: 'Homepage', path: '' },
+  { id: 'pricelist', label: 'Pricelist', path: 'pricelist' },
+  { id: 'about', label: 'About Store', path: 'about' },
+]
 
+// Semua dekorasi hanya berada di dalam jendela browser.
+// BackgroundFX (latar ungu bergerak milik Miu Store) TIDAK diubah dan tidak ditutup.
+const kawaiiCSS = `
   const save = async (e) => {
     e.preventDefault()
     if (busy) return
