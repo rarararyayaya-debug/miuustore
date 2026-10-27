@@ -189,8 +189,11 @@ function ProductCard({ product: p, catName, i }) {
             </span>
           )}
           <h3 className="break-words text-lg font-extrabold leading-snug text-[#595380]">{p.name}</h3>
-          <p className="mt-1 text-sm font-extrabold text-[#cf77a9]">
-            {variants.length ? 'mulai ' : ''}{rupiah(firstPrice(p))}
+{(variants.length > 0 || firstPrice(p) > 0) && (
+  <p className="mt-1 text-sm font-extrabold text-[#cf77a9]">
+    {variants.length ? 'mulai ' : ''}{rupiah(firstPrice(p))}
+  </p>
+)}            {variants.length ? 'mulai ' : ''}{rupiah(firstPrice(p))}
           </p>
         </div>
 
@@ -198,7 +201,7 @@ function ProductCard({ product: p, catName, i }) {
 
         {general && (
           <div className="mt-auto rounded-2xl border-2 border-dashed border-[#eac8df] bg-[#fff7fc] p-3">
-            <p className="mb-1 text-xs font-extrabold text-[#aa6a98]">✎ notes ♡</p>
+            <p className="mb-1 text-xs font-extrabold text-[#aa6a98]">✎ ♡ Daftar Harga & Info Paket</p>
             <p className="whitespace-pre-line break-words text-xs leading-5 text-[#706984]">{general}</p>
           </div>
         )}
