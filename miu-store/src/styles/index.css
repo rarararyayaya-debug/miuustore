@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { --lavender:#CDB4FF; --lilac:#E9D5FF; --dream:#B197FC; --deep:#7155A5; --light:#F8F3FF; --cream:#FFFBFF; --ink:#4B3768; }
+html, body { overflow-x: hidden; }
+body {
+  font-family: Nunito, Quicksand, sans-serif; color: var(--ink);
+  background: linear-gradient(180deg, #E9D5FF 0%, #CDB4FF 55%, #B197FC 100%) fixed;
+}
+
+.pixel-box {
+  background: var(--cream); color: var(--ink);
+  box-shadow: 0 -4px 0 0 var(--deep), 0 4px 0 0 var(--deep), -4px 0 0 0 var(--deep), 4px 0 0 0 var(--deep), 6px 8px 0 0 rgba(113,85,165,.35);
+}
+.pixel-btn {
+  font-family: 'Press Start 2P', monospace; font-size: 11px; min-height: 44px; padding: 0 16px;
+  background: var(--dream); color: #fff; cursor: pointer;
+  box-shadow: 0 -3px 0 0 var(--deep), 0 3px 0 0 var(--deep), -3px 0 0 0 var(--deep), 3px 0 0 0 var(--deep), inset 0 -4px 0 0 var(--deep);
+}
+.pixel-btn:active { animation: bounce .3s; }
+.pixel-btn:disabled { opacity: .5; cursor: not-allowed; }
+
+@keyframes twinkle { 0%,100% { opacity:.2; transform:scale(.8) } 50% { opacity:1; transform:scale(1.2) } }
+@keyframes drift { from { transform: translateX(-20vw) } to { transform: translateX(120vw) } }
+@keyframes floatUp { from { transform: translateY(105vh) } to { transform: translateY(-10vh) } }
+@keyframes bob { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-6px) } }
+@keyframes bounce { 0%,100% { transform: translateY(0) } 40% { transform: translateY(-8px) } 70% { transform: translateY(2px) } }
+@keyframes pulse-heart { 0%,100% { transform: scale(1) } 50% { transform: scale(1.25) } }
+@keyframes shoot { from { transform: translate(0,0); opacity:1 } to { transform: translate(-300px,300px); opacity:0 } }
+@keyframes blink { 0%,92%,100% { transform: scaleY(1) } 96% { transform: scaleY(.1) } }
+@keyframes wag { 0%,100% { transform: rotate(-8deg) } 50% { transform: rotate(14deg) } }
+@keyframes reveal { from { opacity:0; transform: translateY(16px) } to { opacity:1; transform:none } }
+.reveal { animation: reveal .5s both; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+}

@@ -1,0 +1,9 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# Semua rute (termasuk /admin) diarahkan ke index.html agar React Router bekerja
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

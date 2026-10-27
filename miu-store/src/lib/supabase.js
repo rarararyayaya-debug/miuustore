@@ -1,0 +1,8 @@
+import { createClient } from '@supabase/supabase-js'
+
+const url = import.meta.env.VITE_SUPABASE_URL
+const key = import.meta.env.VITE_SUPABASE_ANON_KEY
+
+export const supabaseReady = Boolean(url && key)
+// Hanya anon key yang dipakai di frontend. JANGAN pernah taruh service_role key di sini.
+export const supabase = supabaseReady ? createClient(url, key) : null
