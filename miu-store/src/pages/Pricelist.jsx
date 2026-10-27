@@ -1,4 +1,4 @@
-mport { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Search, Sparkles, Heart, Flower2, ArrowLeft, ArrowRight, RotateCw, Star } from 'lucide-react'
 import { useCatalog } from '../lib/useCatalog'
 import { rupiah } from '../lib/format'
